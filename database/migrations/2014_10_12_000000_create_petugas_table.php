@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('petugas', function (Blueprint $table) {
-            $table->increments('id_petugas')->change();
+            $table->integerIncrements('id_petugas');
             $table->string('nama_petugas');
             $table->string('username')->unique();
             $table->string('password');

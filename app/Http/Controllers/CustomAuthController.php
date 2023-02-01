@@ -14,7 +14,7 @@ class CustomAuthController extends Controller
     //
     public function index()
     {
-        return view('dashboard');
+        return view('auth.login');
     }  
        
  
@@ -48,12 +48,13 @@ class CustomAuthController extends Controller
             'nama_petugas' => 'required',
             'username' => 'required',
             'password' => 'required|min:6',
+            'level' => 'required',
         ]);
             
         $data = $request->all();
         $check = $this->create($data);
           
-        return redirect("dashboard")->withSuccess('have signed-in');
+        return redirect("dashboard");
     }
  
  
@@ -63,8 +64,8 @@ class CustomAuthController extends Controller
         'nama_petugas' => $data['nama_petugas'],
         'username' => $data['username'],
         'password' => Hash::make($data['password']),
-        'id_level' => "0"
-      ]);
+        'id_level' => $data['level']
+      ]); 
     }    
      
  

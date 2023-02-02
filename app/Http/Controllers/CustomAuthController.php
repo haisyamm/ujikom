@@ -25,12 +25,20 @@ class CustomAuthController extends Controller
             'password' => 'required',
         ]);
     
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard')
-                        ->withSuccess('Signed in');
+        if ($cek = Petugas::where('username',$request->username)->first()) {
+            if(Hash::check($request->username, $cek->password)){
+                Session::put('user', $cek);
+                Session::put('isLogin', true);
+                return redirect()->intended('dashboard')
+                            ->withSuccess('Signed in');
+            }
         }
-   
+        // else if ($cek = Penumpang::where('username',$request->username)->first()) {
+        //     if(Hash::check($request->username, $cek->password)){
+        //         return redirect()->intended('dashboard')
+        //                     ->withSuccess('Signed in');
+        //     }
+        // }
         return redirect("login")->withSuccess('Login details are not valid');
     }
  
@@ -71,11 +79,12 @@ class CustomAuthController extends Controller
  
     public function dashboard()
     {
-        if(Auth::check()){
-            return view('dashboard');
-        }
-   
-        return redirect("login")->withSuccess('are not allowed to access');
+        if(Session::has('isLogin')){
+			return view('dashboard');
+		}else{
+			return redirect("login")->withSuccess('are not allowed to access');
+		}
+          
     }
      
  

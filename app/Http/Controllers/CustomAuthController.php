@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Models\Petugas;
-// use App\Models\Penumpang;
+use App\Models\Penumpang;
 use Illuminate\Support\Facades\Auth;
 
 class CustomAuthController extends Controller
@@ -25,7 +25,7 @@ class CustomAuthController extends Controller
             'password' => 'required',
         ]);
     
-        if ($cek = Petugas::where('username',$request->username)->first()) {
+        if ($cek = Penumpang::where('username',$request->username)->first()) {
             if(Hash::check($request->username, $cek->password)){
                 Session::put('user', $cek);
                 Session::put('isLogin', true);
@@ -53,10 +53,9 @@ class CustomAuthController extends Controller
     public function customRegistration(Request $request)
     {  
         $request->validate([
-            'nama_petugas' => 'required',
+            'nama_penumpang' => 'required',
             'username' => 'required',
             'password' => 'required|min:6',
-            'level' => 'required',
         ]);
             
         $data = $request->all();
@@ -68,11 +67,14 @@ class CustomAuthController extends Controller
  
     public function create(array $data)
     {
-      return Petugas::create([
-        'nama_petugas' => $data['nama_petugas'],
+      return Penumpang::create([
+        'nama_penumpang' => $data['nama_penumpang'],
+        'alamat' => $data['alamat'],
+        'jenis_kelamin' => $data['jenis_kelamin'],
+        'telepon' => $data['telepon'],
+        'tanggal_lahir' => $data['tanggal_lahir'],
         'username' => $data['username'],
         'password' => Hash::make($data['password']),
-        'id_level' => $data['level']
       ]); 
     }    
      

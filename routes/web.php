@@ -27,4 +27,5 @@ Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout')
 Route::get('petugas/all', [PetugasController::class, 'index'])->name('petugas');;
 Route::get('petugas/create', [PetugasController::class, 'create']); 
 Route::post('petugas/create', [PetugasController::class, 'store'])->name('petugas.simpan'); 
+Route::resource('petugas', PetugasController::class);
 

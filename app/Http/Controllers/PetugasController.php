@@ -99,7 +99,7 @@ class PetugasController extends Controller
     * @param  \App\petugas  $petugas
     * @return \Illuminate\Http\Response
     */
-    public function destroy(petugas $petugas)
+    public function destroy(Petugas $petugas)
     {
     $petugas->delete();
     return redirect()->route('petugas.index')

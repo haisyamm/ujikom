@@ -141,8 +141,31 @@
               <form id="formAuthentication" class="mb-3" action="{{ route('register.custom') }}" method="POST">
               @csrf
                 <div class="mb-3">
-                  <label for="nama_petugas" class="form-label">Nama Petugas</label>
-                  <input type="text" class="form-control" id="nama_petugas" name="nama_petugas" placeholder="Enter your name" autofocus/>
+                  <label for="nama_penumpang" class="form-label">Nama Penumpang</label>
+                  <input type="text" class="form-control" id="nama_penumpang" name="nama_penumpang" placeholder="Enter your name" autofocus/>
+                </div>
+                <div class="mb-3">
+                  <label for="alamat" class="form-label">Alamat</label>
+                  <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Enter your alamat" autofocus/>
+                </div>
+                <div class="mb-3">
+                <label class="form-label" for="jenis_kelamin">Jenis Kelamin</label>
+                  <div class="input-group input-group-merge">
+                    <select id="jenis_kelamin" class="form-control" name="jenis_kelamin">
+                      <option value="">...</option>
+                      <option value="Perempuan">Perempuan</option>
+                      <option value="Laki-laki">Laki-laki</option>
+                    </select>
+                    
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
+                  <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" placeholder="Enter your tanggal lahir" autofocus/>
+                </div>
+                <div class="mb-3">
+                  <label for="telepon" class="form-label">Telephone</label>
+                  <input type="number" class="form-control" id="telepon" name="telepon" placeholder="Enter your telepon" autofocus/>
                 </div>
                 <div class="mb-3">
                   <label for="username" class="form-label">Username</label>
@@ -169,17 +192,17 @@
                   </div>
                 </div>
 
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                   <label class="form-label" for="level">Level</label>
                   <div class="input-group input-group-merge">
                     <select id="level" class="form-control" name="level">
                       <option value="">...</option>
-                      <option value="0">Petugas</option>
+                      <option value="0">penumpang</option>
                       <option value="1">Penumpang</option>
                     </select>
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                   </div>
-                </div>
+                </div> -->
 
                 <!-- <div class="mb-3">
                   <div class="form-check">

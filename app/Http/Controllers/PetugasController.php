@@ -66,9 +66,9 @@ class PetugasController extends Controller
     * @param  \App\petugas  $petugas
     * @return \Illuminate\Http\Response
     */
-    public function edit(petugas $petugas)
+    public function edit(Petugas $petugas)
     {
-    return view('petugas.edit',compact('petugas'));
+        return view('petugas.edit', compact('petugas'));
     }
     /**
     * Update the specified resource in storage.
@@ -81,13 +81,14 @@ class PetugasController extends Controller
     {
         $request->validate([
             'nama_petugas' => 'required',
-            'username' => 'required',
-            'password' => 'required'
+            'username' => 'required'
         ]);
-    $petugas = petugas::find($id);
-    $petugas->nama_petugas = $request->nama_petugas;
-    $petugas->username = $request->username;
-    $petugas->password = Hash::make($request->password);
+        $petugas = Petugas::find($id);
+        $petugas->nama_petugas = $request->nama_petugas;
+        $petugas->username = $request->username;
+    if($request->password){
+        $petugas->password = Hash::make($request->password);
+    }
     $petugas->username = "1";
     $petugas->save();
     return redirect()->route('petugas.index')
@@ -99,9 +100,9 @@ class PetugasController extends Controller
     * @param  \App\petugas  $petugas
     * @return \Illuminate\Http\Response
     */
-    public function destroy(Petugas $petugas)
+    public function destroy(Petugas $petugas, $id)
     {
-    $petugas->delete();
+    $petugas->where('id_petugas', $id)->delete();
     return redirect()->route('petugas.index')
     ->with('success','petugas has been deleted successfully');
     }

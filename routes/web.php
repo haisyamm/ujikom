@@ -24,8 +24,9 @@ Route::get('registration', [CustomAuthController::class, 'registration'])->name(
 Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom'); 
 Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 
-Route::get('petugas/all', [PetugasController::class, 'index'])->name('petugas');;
-Route::get('petugas/create', [PetugasController::class, 'create']); 
-Route::post('petugas/create', [PetugasController::class, 'store'])->name('petugas.simpan'); 
+Route::get('petugas/{petugas}/edit', [PetugasController::class, 'edit'])->name('petugas.edit');
+Route::post('petugas/{petugas}', [PetugasController::class, 'destroy'])->name('petugas.destroy');
+// Route::get('petugas/create', [PetugasController::class, 'create']); 
+// Route::post('petugas/create', [PetugasController::class, 'store'])->name('petugas.simpan'); 
 Route::resource('petugas', PetugasController::class);
 

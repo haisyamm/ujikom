@@ -10,7 +10,7 @@
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Petugas /</span> List Data</h4>
         <!-- Basic Bootstrap Table -->
         <div class="card">
-        <h5 class="card-header">Table Basic</h5>
+        <div class="card-header text-end"> <a class="btn btn-primary" href="{{ route('petugas.create') }}">Add Data</a></div>
         <div class="table-responsive text-nowrap">
             <table class="table">
             <thead>
@@ -30,7 +30,7 @@
                     <td>{{ $data->username }}</td>
                     <td>{{ $data->id_level }}</td>
                     <td><form action="{{ route('petugas.destroy',$data->id_petugas) }}" method="Post">
-                    <a class="btn btn-primary" href="{{ route('petugas.edit',$data->id_petugas) }}">Edit</a>
+                    <a class="btn btn-secondary" href="{{ route('petugas.edit',$data->id_petugas) }}">Edit</a>
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Delete</button>

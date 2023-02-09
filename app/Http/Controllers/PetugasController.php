@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Petugas;
 use Illuminate\Support\Facades\Hash;
+use Dompdf\dompdf;
+use PDF;
 
 class PetugasController extends Controller
 {
@@ -58,7 +60,7 @@ class PetugasController extends Controller
     */
     public function show(Petugas $petugas)
     {
-    return view('petugas.show',compact('petugas'));
+    // return view('petugas.show',compact('petugas'));
     } 
     /**
     * Show the form for editing the specified resource.
@@ -105,5 +107,23 @@ class PetugasController extends Controller
     $petugas->where('id_petugas', $id)->delete();
     return redirect()->route('petugas.index')
     ->with('success','petugas has been deleted successfully');
+    }
+
+    public function report(Petugas $petugas)
+    {
+        $data['petugas'] = Petugas::orderBy('id_petugas','desc')->paginate(5);
+        return view('report.petugas', $data);
+        
+    }
+
+    public function exportPDF(Request $request)
+    {
+        
+        $data['petugas'] = Petugas::all();
+        // share data to view
+        // view()->share('pdf.petugas', $data);
+        $pdf = PDF::loadView('pdf.petugas', $data);
+        // download PDF file with download method
+        return $pdf->download('pdf_file.pdf');
     }
 }

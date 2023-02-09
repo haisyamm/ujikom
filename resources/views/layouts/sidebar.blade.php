@@ -82,7 +82,7 @@
               </a>
               <ul class="menu-sub">
               <li class="menu-item">
-                  <a href="auth-forgot-password-basic.html" class="menu-link" target="_blank">
+                  <a href="{{route('petugas.index')}}" class="menu-link">
                     <div data-i18n="Basic">Petugas</div>
                   </a>
                 </li>

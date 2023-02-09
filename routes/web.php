@@ -16,7 +16,7 @@ use App\Http\Controllers\PetugasController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/', [CustomAuthController::class, 'dashboard']); 
 Route::get('dashboard', [CustomAuthController::class, 'dashboard']); 
 Route::get('login', [CustomAuthController::class, 'index'])->name('login');
 Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom'); 

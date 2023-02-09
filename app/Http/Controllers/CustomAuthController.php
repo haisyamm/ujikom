@@ -26,19 +26,27 @@ class CustomAuthController extends Controller
         ]);
     
         if ($cek = Penumpang::where('username',$request->username)->first()) {
-            if(Hash::check($request->username, $cek->password)){
+            // dd(Hash::check($request->password, $cek->password));
+            if(Hash::check($request->password, $cek->password)){
                 Session::put('user', $cek);
+                Session::put('level', "penumpang");
+                Session::put('isLogin', true);
+                return redirect()->intended('dashboard')
+                            ->withSuccess('Signed in');
+            }
+        }elseif ($cek = Petugas::where('username',$request->username)->first()) {
+            if(Hash::check($request->password, $cek->password)){
+                Session::put('user', $cek);
+                if($cek->id_level == 0){
+                    Session::put('level', "admin");
+                }else{
+                    Session::put('level', "petugas");
+                }
                 Session::put('isLogin', true);
                 return redirect()->intended('dashboard')
                             ->withSuccess('Signed in');
             }
         }
-        // else if ($cek = Penumpang::where('username',$request->username)->first()) {
-        //     if(Hash::check($request->username, $cek->password)){
-        //         return redirect()->intended('dashboard')
-        //                     ->withSuccess('Signed in');
-        //     }
-        // }
         return redirect("login")->withSuccess('Login details are not valid');
     }
  

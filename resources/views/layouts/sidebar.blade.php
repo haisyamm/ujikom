@@ -172,6 +172,47 @@
             </li>
             @endif
             <li class="menu-header small text-uppercase">
+              <span class="menu-header-text">Report</span>
+            </li>
+            @if(Session::get('level') == "admin" || Session::get('level') == "petugas")
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <div data-i18n="Account Settings">Master Data</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="pages-account-settings-account.html" class="menu-link">
+                    <div data-i18n="Account">Level</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="pages-account-settings-notifications.html" class="menu-link">
+                    <div data-i18n="Notifications">Tipe Transportasi</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <div data-i18n="Account Settings">Ticket</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="pages-account-settings-account.html" class="menu-link">
+                    <div data-i18n="Account">Pesawat</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="pages-account-settings-notifications.html" class="menu-link">
+                    <div data-i18n="Notifications">Kereta Api</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            @endif
+            <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Settings</span>
             </li>
             @if(Session::get('level') == "admin")

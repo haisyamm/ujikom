@@ -182,15 +182,25 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="pages-account-settings-account.html" class="menu-link">
-                    <div data-i18n="Account">Level</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="pages-account-settings-notifications.html" class="menu-link">
-                    <div data-i18n="Notifications">Tipe Transportasi</div>
-                  </a>
-                </li>
+                    <a href="{{route('petugas.index')}}" class="menu-link">
+                      <div data-i18n="Basic">Petugas</div>
+                    </a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="auth-forgot-password-basic.html" class="menu-link" target="_blank">
+                      <div data-i18n="Basic">Penumpang</div>
+                    </a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="auth-login-basic.html" class="menu-link" target="_blank">
+                      <div data-i18n="Basic">Rute</div>
+                    </a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="auth-register-basic.html" class="menu-link" target="_blank">
+                      <div data-i18n="Basic">Transportasi</div>
+                    </a>
+                  </li>
               </ul>
             </li>
             <li class="menu-item">

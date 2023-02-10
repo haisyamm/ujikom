@@ -31,4 +31,5 @@ Route::post('petugas/{petugas}', [PetugasController::class, 'destroy'])->name('p
 
 Route::get('petugas/report', [PetugasController::class, 'report'])->name('report.petugas'); 
 Route::get('petugas/exportpdf', [PetugasController::class, 'exportPdf'])->name('report.petugas.pdf'); 
+Route::get('petugas/exportExcel', [PetugasController::class, 'exportExcel'])->name('report.petugas.excel'); 
 Route::resource('petugas', PetugasController::class);

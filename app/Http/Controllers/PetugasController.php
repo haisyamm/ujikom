@@ -6,6 +6,8 @@ use App\Models\Petugas;
 use Illuminate\Support\Facades\Hash;
 use Dompdf\dompdf;
 use PDF;
+use App\Exports\ExportPetugas;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PetugasController extends Controller
 {
@@ -109,21 +111,37 @@ class PetugasController extends Controller
     ->with('success','petugas has been deleted successfully');
     }
 
-    public function report(Petugas $petugas)
+    public function report(Request $request)
     {
-        $data['petugas'] = Petugas::orderBy('id_petugas','desc')->paginate(5);
+        
+        $from_date=$request->from_date;
+        $to_date = $request->to_date;
+        
+        $data['petugas'] = Petugas::whereBetween('created_at',[ $from_date,$to_date])
+        ->orderBy('id_petugas','desc')->paginate(5);
         return view('report.petugas', $data);
         
     }
 
     public function exportPDF(Request $request)
     {
+        // dd($request->from_date);
+        $from_date=$request->from_date;
+        $to_date = $request->to_date;
         
-        $data['petugas'] = Petugas::all();
-        // share data to view
-        // view()->share('pdf.petugas', $data);
+        $data['petugas'] = Petugas::whereBetween('created_at',[ $from_date,$to_date])
+        ->orderBy('id_petugas','desc')->paginate(5);
+        set_time_limit(6000);
         $pdf = PDF::loadView('pdf.petugas', $data);
-        // download PDF file with download method
-        return $pdf->download('pdf_file.pdf');
+        return $pdf->stream('pdf_petugas.pdf');
+    }
+
+    public function exportExcel(Request $request) 
+    {
+
+        $from_date=$request->from_date;
+        $to_date = $request->to_date;
+
+        return Excel::download(new ExportPetugas($from_date,$to_date), 'petugas.xlsx');
     }
 }
